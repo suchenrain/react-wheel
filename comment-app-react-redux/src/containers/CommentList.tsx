@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { CommentList } from '../components/CommentList';
 import { deleteComment, initComments } from '../reducers/commentsReducer';
 
-interface IProps {
+type Props = {
   comments: Array<any>;
-  initComments: (comments) => void;
-  onDeleteComment: (index: number) => void;
-}
+  initComments?: (comments) => void;
+  onDeleteComment?: (index: number) => void;
+};
+const defaultProps: Props = {
+  comments: []
+};
+class CommentListContainer extends React.Component<Props> {
+  static defaultProps = defaultProps;
 
-class CommentListContainer extends React.Component<IProps> {
   componentWillMount() {
     this._loadComments();
   }
@@ -17,7 +21,9 @@ class CommentListContainer extends React.Component<IProps> {
   private _loadComments() {
     let comments = localStorage.getItem('comments');
     comments = comments ? JSON.parse(comments) : [];
-    this.props.initComments(comments);
+    if (this.props.initComments) {
+      this.props.initComments(comments);
+    }
   }
 
   handleDeleteComment = (index: number) => {

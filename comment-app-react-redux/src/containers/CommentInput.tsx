@@ -4,17 +4,23 @@ import { CommentInput } from '../components/CommentInput';
 import { addComment } from '../reducers/commentsReducer';
 import { connect } from 'react-redux';
 
-interface IProps {
+type Props = {
   comments: Array<any>;
   onSubmit: (comment) => void;
-}
-class CommentInputContainer extends React.Component<IProps, any> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      username: ''
-    };
-  }
+};
+
+const initialState = {
+  username: ''
+};
+const defaultProps = {
+  comments: []
+};
+
+type State = typeof initialState;
+
+class CommentInputContainer extends React.Component<Props, State> {
+  static defaultProps = defaultProps;
+  state = initialState;
 
   componentWillMount() {
     this._loadUsername();

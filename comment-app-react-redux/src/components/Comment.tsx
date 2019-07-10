@@ -79,7 +79,7 @@ export class Comment extends React.Component<IProps, IState> {
   render() {
     return (
       <div className="comment">
-        <div className="comment-user">
+        <div className="comment-username">
           <span>{this.props.comment.username}</span>:
         </div>
         {/* <p>{this.props.comment.content}</p> */}
