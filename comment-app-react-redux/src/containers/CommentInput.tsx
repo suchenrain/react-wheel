@@ -65,7 +65,7 @@ class CommentInputContainer extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-  return { contents: state.comments };
+  return { comments: state.comments };
 };
 const mapDispatchToProps = dispatch => {
   return {
